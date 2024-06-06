@@ -39,14 +39,14 @@ public class FacultyController {
         return ResponseEntity.ok(deletedFaculty);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("get-by-id/{id}")
     @Operation(summary = "Получение факультета по идентификатору")
     public ResponseEntity<Faculty> get(@PathVariable Long id) {
         Faculty faculty = service.get(id);
         return ResponseEntity.ok(faculty);
     }
 
-    @GetMapping("{color}")
+    @GetMapping("get-by-color/{color}")
     @Operation(summary = "Получение факультетов по цвету")
     public ResponseEntity<Collection<Faculty>> getByColor(@RequestParam String color) {
         Collection<Faculty> faculties = service.getByColor(color);

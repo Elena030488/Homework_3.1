@@ -25,30 +25,35 @@ public class StudentController {
         Student addedStudent = service.add(student);
         return ResponseEntity.ok(addedStudent);
     }
+
     @PutMapping
     @Operation(summary = "Обновление студента")
     public ResponseEntity<Student> update(@RequestBody Student student) {
         Student updatedStudent = service.update(student);
         return ResponseEntity.ok(updatedStudent);
     }
+
     @DeleteMapping("{id}")
     @Operation(summary = "Удаление студента")
     public ResponseEntity<Student> remove(@PathVariable Long id) {
         Student deletedStudent = service.remove(id);
         return ResponseEntity.ok(deletedStudent);
     }
-    @GetMapping("{id}")
+
+    @GetMapping("get-by-id/{id}")
     @Operation(summary = "Получение студента по идентификатору")
     public ResponseEntity<Student> get(@PathVariable Long id) {
         Student student = service.get(id);
         return ResponseEntity.ok(student);
     }
-    @GetMapping("{age}")
+
+    @GetMapping("get-by-age/{age}")
     @Operation(summary = "Получение студентов по возрасту")
     public ResponseEntity<Collection<Student>> getByAge(@RequestParam Integer age) {
         Collection<Student> students = service.getByAge(age);
         return ResponseEntity.ok(students);
     }
+
     @GetMapping("all")
     @Operation(summary = "Получение всех студентов")
     public ResponseEntity<Collection<Student>> getAll() {
