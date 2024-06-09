@@ -3,6 +3,7 @@ package ru.hogwarts.school.service;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.exceptions.EntityNotFoundException;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.FacultyRepository;
 
 import java.util.Collection;
@@ -43,6 +44,17 @@ public class FacultyServiceImpl implements FacultyService {
         return getAll().stream()
                 .filter(s -> s.getColor().equals(color))
                 .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public Collection<Faculty> getByNameOrColor(String name, String color) {
+        return facultyRepository.findByNameIgnoreCaseOrColorIgnoreCase(name, color);
+    }
+
+    @Override
+    public Collection<Student> getStudents(Long facultyId) {
+        return get(facultyId).getStudents();
     }
 
     @Override
